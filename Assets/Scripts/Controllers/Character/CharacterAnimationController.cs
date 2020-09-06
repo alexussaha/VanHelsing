@@ -7,8 +7,8 @@ namespace BeastHunter
     {
         #region Fields
 
-        private int _defaultMovementHash;
-        private int _defaultIdleHash;
+        private int _movementHash;
+        private int _idleHash;
         private int _jumpHash;
         private int _fallHash;
         private int _battleIdleHash;
@@ -23,6 +23,7 @@ namespace BeastHunter
         private int _dancingHash;
         private int _stunnedHash;
         private int _deadHash;
+        private int _trapPlaceHash;
 
         #endregion
 
@@ -49,9 +50,9 @@ namespace BeastHunter
 
         public void Initialize()
         {
-            _defaultMovementHash = Animator.StringToHash("DefaultMovement");
+            _movementHash = Animator.StringToHash("Movement");
             _jumpHash = Animator.StringToHash("Jump");
-            _defaultIdleHash = Animator.StringToHash("DefaultIdle");
+            _idleHash = Animator.StringToHash("Idle");
             _dancingHash = Animator.StringToHash("Dancing");
             _fallHash = Animator.StringToHash("Fall");
             _rollHash = Animator.StringToHash("Roll");
@@ -65,6 +66,7 @@ namespace BeastHunter
             _battleTargetMovementTwoHandedSliceHash = Animator.StringToHash("BattleTargetMovementTwoHandedSlice");
             _stunnedHash = Animator.StringToHash("Stunned");
             _deadHash = Animator.StringToHash("Dead");
+            _trapPlaceHash = Animator.StringToHash("PlaceTrap");
         }
 
         public void UpdateAnimationParameters(float axisX, float axisY, float moveSpeed, float animationSpeed)
@@ -78,15 +80,47 @@ namespace BeastHunter
             }
         }
 
-        public void PlayDefaultIdleAnimation()
+        public void PlayIdleAnimation()
         {
-            CharacterAnimator.Play(_defaultIdleHash);
+            CharacterAnimator.Play(_idleHash);
         }
 
-        public void PlayDefaultMovementAnimation()
+        public void PlayMovementAnimation()
         {
-            CharacterAnimator.Play(_defaultMovementHash);
+            CharacterAnimator.Play(_movementHash);
         }
+
+        public void PlayNotArmedAttackAnimation(int attackIndex)
+        {
+            CharacterAnimator.Play("NotArmedAttack_"+ attackIndex.ToString());
+        }
+
+        public void PlayArmedAttackAnimation(string weaponName, int attackIndex)
+        {
+            CharacterAnimator.Play(weaponName.ToString() + "Attack_" + attackIndex.ToString());
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public void PlayBattleIdleAnimation(WeaponItem leftWeapon, WeaponItem rightWeapon)
         {
@@ -133,7 +167,7 @@ namespace BeastHunter
         }
 
         public void PlayRollAnimation(float rollingX, float rollingY, WeaponItem leftWeapon, WeaponItem rightWeapon)
-        {   
+        {
             CharacterAnimator.SetFloat("RollingX", rollingX);
             CharacterAnimator.SetFloat("RollingY", rollingY);
 
@@ -202,6 +236,16 @@ namespace BeastHunter
         public void SetLookAtWeight(float weight, float bodyWeight, float headWeight, float eyesWeight, float clampWeight)
         {
             CharacterAnimator.SetLookAtWeight(weight, bodyWeight, headWeight, eyesWeight, clampWeight);
+        }
+
+        public void SetCrouchLevel(float level)
+        {
+            CharacterAnimator.SetFloat("CrouchLevel", level);
+        }
+
+        public void PlayTrapPlaceAnimation()
+        {
+            CharacterAnimator.Play(_trapPlaceHash);
         }
 
         #endregion

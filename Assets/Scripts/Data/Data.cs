@@ -18,6 +18,7 @@ namespace BeastHunter
         [SerializeField] private string _feastPath;
         [SerializeField] private string _bossFeastPath;
         [SerializeField] private string _jacketPath;
+        [SerializeField] private string _helmPath;
         [SerializeField] private string _cameraDataPath;
         [SerializeField] private string _questIndicatorDataPath;
         [SerializeField] private string _questJournalDataPath;
@@ -26,6 +27,14 @@ namespace BeastHunter
         [SerializeField] private string _bossDataPath;
         [SerializeField] private string _trapDataPath;
         [SerializeField] private string _trapDataPath2;
+        [SerializeField] private string _bossFirstWeakPointPath;
+        [SerializeField] private string _bossSecondWeakPointPath;
+        [SerializeField] private string _bossThirdWeakPointPath;
+        [SerializeField] private string _timeSkipDataPath;
+        [SerializeField] private string _weaponWheelUIPath;
+        [SerializeField] private string _shouldersPath;
+        [SerializeField] private string _shoesPath;
+        [SerializeField] private string _ironGreavesPath;
 
         private static Data _instance;
         private static SphereData _sphereData;
@@ -38,6 +47,10 @@ namespace BeastHunter
         private static WeaponItem _feast;
         private static WeaponItem _bossFeast;
         private static ClothItem _jacket;
+        private static ClothItem _helm;
+        private static ClothItem _shoulders;
+        private static ClothItem _shoes;
+        private static ClothItem _ironGreaves;
         private static CameraData _cameraData;
         private static QuestJournalData _questJournalData;
         private static TemporaryBuffClass _healthBuffData;
@@ -45,7 +58,11 @@ namespace BeastHunter
         private static BossData _bossData;
         private static TrapData _trapData;
         private static TrapData _trapData2;
-
+        private static WeakPointData _bossFirstWeakPoint;
+        private static WeakPointData _bossSecondWeakPoint;
+        private static WeakPointData _bossThirdWeakPoint;
+        private static TimeSkipData _timeSkipData;
+        private static GameObject _weaponWheelUI;
 
         #endregion
 
@@ -160,6 +177,54 @@ namespace BeastHunter
             }
         }
 
+        public static ClothItem Shoulders
+        {
+            get
+            {
+                if (_shoulders == null)
+                {
+                    _shoulders = Resources.Load<ClothItem>("Data/" + Instance._shouldersPath);
+                }
+                return _shoulders;
+            }
+        }
+
+        public static ClothItem Helm
+        {
+            get
+            {
+                if (_helm == null)
+                {
+                    _helm = Resources.Load<ClothItem>("Data/" + Instance._helmPath);
+                }
+                return _helm;
+            }
+        }
+
+        public static ClothItem Shoes
+        {
+            get
+            {
+                if (_shoes == null)
+                {
+                    _shoes = Resources.Load<ClothItem>("Data/" + Instance._shoesPath);
+                }
+                return _shoes;
+            }
+        }
+
+        public static ClothItem IronGreaves
+        {
+            get
+            {
+                if (_ironGreaves == null)
+                {
+                    _ironGreaves = Resources.Load<ClothItem>("Data/" + Instance._ironGreavesPath);
+                }
+                return _ironGreaves;
+            }
+        }
+
         public static CameraData CameraData
         {
             get
@@ -241,6 +306,66 @@ namespace BeastHunter
                     _trapData2 = Load<TrapData>("Data/" + Instance._trapDataPath2);
                 }
                 return _trapData2;
+            }
+        }
+
+        public static WeakPointData BossFirstWeakPoint
+        {
+            get
+            {
+                if (_bossFirstWeakPoint == null)
+                {
+                    _bossFirstWeakPoint = Load<WeakPointData>("Data/" + Instance._bossFirstWeakPointPath);
+                }
+                return _bossFirstWeakPoint;
+            }
+        }
+
+        public static WeakPointData BossSecondWeakPoint
+        {
+            get
+            {
+                if (_bossSecondWeakPoint == null)
+                {
+                    _bossSecondWeakPoint = Load<WeakPointData>("Data/" + Instance._bossSecondWeakPointPath);
+                }
+                return _bossSecondWeakPoint;
+            }
+        }
+
+        public static WeakPointData BossThirdWeakPoint
+        {
+            get
+            {
+                if (_bossThirdWeakPoint == null)
+                {
+                    _bossThirdWeakPoint = Load<WeakPointData>("Data/" + Instance._bossThirdWeakPointPath);
+                }
+                return _bossThirdWeakPoint;
+            }
+        }
+
+        public static TimeSkipData TimeSkipData
+        {
+            get
+            {
+                if (_timeSkipData == null)
+                {
+                    _timeSkipData = Load<TimeSkipData>("Data/" + Instance._timeSkipDataPath);
+                }
+                return _timeSkipData;
+            }
+        }
+
+        public static GameObject WeaponWheelUI
+        {
+            get
+            {
+                if(_weaponWheelUI == null)
+                {
+                    _weaponWheelUI = Load<GameObject>("Data/" + Instance._weaponWheelUIPath);
+                }
+                return _weaponWheelUI;
             }
         }
 
